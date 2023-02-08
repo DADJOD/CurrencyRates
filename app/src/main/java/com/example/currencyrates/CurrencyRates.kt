@@ -3,9 +3,6 @@
 package com.example.currencyrates
 
 import android.app.ListActivity
-import android.content.AsyncQueryHandler
-import android.content.AsyncTaskLoader
-import android.os.AsyncTask
 import android.os.Bundle
 import android.widget.SimpleAdapter
 import android.widget.Toast
@@ -22,7 +19,7 @@ import javax.xml.parsers.DocumentBuilder
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.parsers.ParserConfigurationException
 
-    // this app does not work cause I pull request in main thread 
+    // this app does not work cause I pull request in main thread
 @Suppress("SENSELESS_COMPARISON")
 class CurrencyRates : ListActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,14 +34,6 @@ class CurrencyRates : ListActivity() {
         val sa   = SimpleAdapter(this, data, R.layout.item_view, from, to )
         listAdapter = sa
     }
-
-//    private fun populate() {
-//        val data: ArrayList<Map<String, String>> = getData()
-//        val from = arrayOf(KEY_CHAR_CODE, KEY_VALUE, KEY_NOMINAL, KEY_NAME)
-//        val to = intArrayOf(R.id.charCodeView, R.id.valueView, R.id.nominalView, R.id.nameView)
-//        val sa = SimpleAdapter(this, data, R.layout.item_view, from, to)
-//        listAdapter = sa
-//    }
 
     private fun getData(): ArrayList<Map<String, String>> {
         val list = ArrayList<Map<String, String>>()
@@ -125,87 +114,6 @@ class CurrencyRates : ListActivity() {
 
         return list
     }
-
-//    internal class AsyncRequest :
-//        AsyncTask<String?, Int?, String>() {
-//        override fun doInBackground(vararg params: String?): String? {
-//            return Request(arg[0], arg[1], arg[2]).Content
-//        }
-//
-//        override fun onPostExecute(s: String) {
-//            super.onPostExecute(s)
-//            WebTest.setText(s)
-//        }
-//    }
-
-//    private fun getData(): ArrayList<Map<String, String>>? {
-//        val list = ArrayList<Map<String, String>>()
-//        var m: MutableMap<String, String>
-//        try {
-//// Создаем объект URL
-//            val url = URL(getString(R.string.rates_url))
-//            // Соединяемся
-//            val httpConnection: HttpURLConnection = url.openConnection() as HttpURLConnection
-//            // Получаем от сервера код ответа
-//            val responseCode: Int = httpConnection.getResponseCode()
-//            // Если код ответа хороший, парсим поток(ответ сервера),
-//// устанавливаем дату в заголовке приложения и
-//// заполняем list нужными Map'ами
-//            if (responseCode == HttpURLConnection.HTTP_OK) {
-//                val `in`: InputStream = httpConnection.getInputStream()
-//                val dbf: DocumentBuilderFactory = DocumentBuilderFactory
-//                    .newInstance()
-//                val db: DocumentBuilder = dbf.newDocumentBuilder()
-//                val dom: Document = db.parse(`in`)
-//                val docElement: Element = dom.getDocumentElement()
-//                val date: String = docElement.getAttribute("Date")
-//                title = "$title на $date"
-//                val nodeList: NodeList = docElement
-//                    .getElementsByTagName("Valute")
-//                val count: Int = nodeList.getLength()
-//                if (nodeList != null && count > 0) {
-//                    for (i in 0 until count) {
-//                        val entry: Element = nodeList
-//                            .item(i) as Element
-//                        m = HashMap()
-//                        val charCode: String = entry
-//                            .getElementsByTagName(KEY_CHAR_CODE)
-//                            .item(0).getFirstChild()
-//                            .getNodeValue()
-//                        val value: String = entry
-//                            .getElementsByTagName(KEY_VALUE)
-//                            .item(0).getFirstChild()
-//                            .getNodeValue()
-//                        val nominal = "за " + entry
-//                            .getElementsByTagName(KEY_NOMINAL)
-//                            .item(0).getFirstChild()
-//                            .getNodeValue()
-//                        val name: String = entry
-//                            .getElementsByTagName(KEY_NAME)
-//                            .item(0).getFirstChild()
-//                            .getNodeValue()
-//                        m[KEY_CHAR_CODE] = charCode
-//                        m[KEY_VALUE] = value
-//                        m[KEY_NOMINAL] = nominal
-//                        m[KEY_NAME] = name
-//                        list.add(m)
-//                    }
-//                }
-//            } else {
-//// Сделать извещения об ошибках, если код ответа
-//// нехороший
-//            }
-//        } catch (e: MalformedURLException) {
-//            e.printStackTrace()
-//        } catch (e: IOException) {
-//            e.printStackTrace()
-//        } catch (e: ParserConfigurationException) {
-//            e.printStackTrace()
-//        } catch (e: SAXException) {
-//            e.printStackTrace()
-//        }
-//        return list
-//    }
 
     companion object {
         private const val KEY_CHAR_CODE = "CharCode"
